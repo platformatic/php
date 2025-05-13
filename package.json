@@ -36,6 +36,7 @@
   "devDependencies": {
     "c8": "^10.1.3",
     "eslint": "^9.26.0",
-    "neostandard": "^0.12.1"
+    "neostandard": "^0.12.1",
+    "platformatic": "^2.63.3"
   }
 }
