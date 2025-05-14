@@ -255,9 +255,24 @@ export interface PlatformaticPHPConfiguration {
   }[];
   php?: {
     /**
-     * Path to the PHP file to be executed. This file should contain a valid PHP script.
+     * Path to the root of the PHP project
      */
-    main: string;
+    path: string;
+    rewriteRules:
+      | string
+      | {
+          /**
+           * Custom URL rewriting pattern.
+           */
+          base?: string;
+          /**
+           * Options for the custom URL rewriting pattern.
+           */
+          options?: {
+            [k: string]: unknown;
+          };
+          [k: string]: unknown;
+        };
     [k: string]: unknown;
   };
 }
