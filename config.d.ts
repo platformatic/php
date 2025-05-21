@@ -257,22 +257,7 @@ export interface PlatformaticPHPConfiguration {
     /**
      * Path to the root of the PHP project
      */
-    path: string;
-    rewriteRules:
-      | string
-      | {
-          /**
-           * Custom URL rewriting pattern.
-           */
-          base?: string;
-          /**
-           * Options for the custom URL rewriting pattern.
-           */
-          options?: {
-            [k: string]: unknown;
-          };
-          [k: string]: unknown;
-        };
+    docroot: string;
     [k: string]: unknown;
   };
 }

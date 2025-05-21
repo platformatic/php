@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/platformatic/php#readme",
   "dependencies": {
-    "@platformatic/php-node": "^0.1.3",
+    "@fastify/static": "^8.2.0",
+    "@platformatic/php-node": "^0.2.0",
     "@platformatic/service": "^2.63.3",
     "json-schema-to-typescript": "^15.0.4"
   },

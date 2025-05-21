@@ -1124,39 +1124,14 @@
     "php": {
       "type": "object",
       "properties": {
-        "path": {
+        "docroot": {
           "type": "string",
           "description": "Path to the root of the PHP project",
           "resolvePath": true
-        },
-        "rewriteRules": {
-          "anyOf": [
-            {
-              "type": "string",
-              "description": "URL rewriting strategy to use. Supported values: \"extension-hiding\", \"pretty-urls\", \"wordpress\", \"laravel\", \"codeigniter\", \"symfony\", \"front-controller\", \"custom\".",
-              "default": "front-controller"
-            },
-            {
-              "type": "object",
-              "description": "Custom URL rewriting rules. Must be a valid JSON object.",
-              "properties": {
-                "base": {
-                  "type": "string",
-                  "description": "Custom URL rewriting pattern.",
-                  "default": "custom"
-                },
-                "options": {
-                  "type": "object",
-                  "description": "Options for the custom URL rewriting pattern."
-                }
-              }
-            }
-          ]
         }
       },
       "required": [
-        "path",
-        "rewriteRules"
+        "docroot"
       ]
     }
   },
