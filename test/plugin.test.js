@@ -4,7 +4,6 @@ import { once } from 'node:events'
 import { resolve, join } from 'node:path'
 import { test } from 'node:test'
 import { stackable } from '../lib/index.js'
-import fastify from 'fastify'
 import formAutoContet from 'form-auto-content'
 
 async function startStackable (t, docroot = join(import.meta.dirname, './fixtures/hello'), opts = {}) {
