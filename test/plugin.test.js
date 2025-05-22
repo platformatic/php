@@ -60,7 +60,7 @@ test('get all headers', async t => {
   t.assert.deepStrictEqual(res.statusCode, 200)
   t.assert.deepStrictEqual(res.json(), {
     'HTTP_USER_AGENT': 'lightMyRequest',
-    'HTTP_HOST': 'localhost:3000'
+    'HTTP_HOST': 'localhost:80'
   })
 })
 
