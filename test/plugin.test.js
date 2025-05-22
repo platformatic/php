@@ -4,6 +4,8 @@ import { once } from 'node:events'
 import { resolve, join } from 'node:path'
 import { test } from 'node:test'
 import { stackable } from '../lib/index.js'
+import fastify from 'fastify'
+import formAutoContet from 'form-auto-content'
 
 async function startStackable (t, docroot = join(import.meta.dirname, './fixtures/hello'), opts = {}) {
   const config = {
@@ -36,6 +38,33 @@ test('PHP hello world', async t => {
   t.assert.deepStrictEqual(res.body, 'Hello World!')
 })
 
+test('post data', async t => {
+  const server = await startStackable(t)
+  const res = await server.inject({
+    url: '/post.php', 
+    method: 'POST',
+    ...formAutoContet({
+      'foo': 'bar'
+    })
+  })
+
+  t.assert.deepStrictEqual(res.statusCode, 200)
+  t.assert.deepStrictEqual(res.json(), {
+    foo: 'bar'
+  })
+})
+
+test('get all headers', async t => {
+  const server = await startStackable(t)
+  const res = await server.inject('/headers.php')
+
+  t.assert.deepStrictEqual(res.statusCode, 200)
+  t.assert.deepStrictEqual(res.json(), {
+    'HTTP_USER_AGENT': 'lightMyRequest',
+    'HTTP_HOST': 'localhost:3000'
+  })
+})
+
 test('serve static files in docroot', async t => {
   const server = await startStackable(t)
   const res = await server.inject('/something.txt')
@@ -44,10 +73,9 @@ test('serve static files in docroot', async t => {
   t.assert.deepStrictEqual(res.body, 'a txt file\n')
 })
 
-test.skip('The index.php is called on any file - URL rewriting works', async t => {
+test('404', async t => {
   const server = await startStackable(t)
   const res = await server.inject('/path/to/nowhere')
 
-  t.assert.deepStrictEqual(res.statusCode, 200)
-  t.assert.deepStrictEqual(res.body, 'Hello World!')
+  t.assert.deepStrictEqual(res.statusCode, 404)
 })
