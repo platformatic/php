@@ -20,8 +20,8 @@
   "type": "module",
   "main": "./lib/index.js",
   "bin": {
-    "create-platformatic-kafka-hooks": "./cli/create.js",
-    "start-platformtic-kafka-hooks": "./cli/start.js"
+    "create-platformatic-php": "./cli/create.js",
+    "start-platformatic-php": "./cli/start.js"
   },
   "author": "Platformatic Inc. <oss@platformatic.dev> (https://platformatic.dev)",
   "license": "Apache-2.0",
