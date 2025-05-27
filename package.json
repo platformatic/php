@@ -1,6 +1,6 @@
 {
   "name": "@platformatic/php",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Integration of PHP with Wattpm",
   "scripts": {
     "test": "node --test",
