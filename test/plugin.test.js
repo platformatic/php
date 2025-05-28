@@ -12,7 +12,7 @@ async function startStackable (t, docroot = join(import.meta.dirname, './fixture
     $schema: '../../schema.json',
     module: '../../lib/index.js',
     php: {
-      docroot 
+      docroot
     },
     port: 0,
     server: {
@@ -43,7 +43,7 @@ test('PHP hello world', async t => {
 test('post data', async t => {
   const server = await startStackable(t)
   const res = await server.inject({
-    url: '/post.php', 
+    url: '/post.php',
     method: 'POST',
     ...formAutoContet({
       'foo': 'bar'
