@@ -5,7 +5,6 @@ import { resolve, join } from 'node:path'
 import { test } from 'node:test'
 import { stackable } from '../lib/index.js'
 import formAutoContet from 'form-auto-content'
-import { setTimeout as sleep } from 'node:timers/promises'
 
 async function startStackable (t, docroot = join(import.meta.dirname, './fixtures/hello'), opts = {}) {
   const config = {
@@ -22,11 +21,9 @@ async function startStackable (t, docroot = join(import.meta.dirname, './fixture
     }
   }
 
-  let server = await buildServer(config, stackable)
+  const server = await buildServer(config, stackable)
   t.after(async () => {
     await server.close()
-    server = null
-    await sleep(1000) // wait for the server to close
   })
 
   return server
