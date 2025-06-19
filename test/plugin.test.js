@@ -11,7 +11,8 @@ async function startStackable (t, docroot = join(import.meta.dirname, './fixture
     $schema: '../../schema.json',
     module: '../../lib/index.js',
     php: {
-      docroot
+      docroot,
+      rewriter: opts.rewriter
     },
     port: 0,
     server: {
@@ -77,4 +78,19 @@ test('404', async t => {
   const res = await server.inject('/path/to/nowhere')
 
   t.assert.deepStrictEqual(res.statusCode, 404)
+})
+
+test('support rewriter', async t => {
+  const server = await startStackable(t, undefined, {
+    rewriter: [{
+      rewriters: [{
+        type: 'href',
+        args: ['^/(.*)$', '/index.php']
+      }]
+    }]
+  })
+  const res = await server.inject('/rewrite_me')
+
+  t.assert.deepStrictEqual(res.statusCode, 200)
+  t.assert.deepStrictEqual(res.body, 'Hello World!')
 })
