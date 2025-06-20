@@ -49,7 +49,28 @@ The stackable uses a `platformatic.json` configuration file:
   "$schema": "https://schemas.platformatic.dev/@platformatic/php/0.4.3.json",
   "module": "@platformatic/php",
   "php": {
-    "docroot": "public"
+    "docroot": "public",
+    "rewriter": [
+      {
+        "operation": "and",
+        "conditions": [
+          {
+            "type": "path",
+            "args": ["^/api/.*"]
+          },
+          {
+            "type": "method",
+            "args": ["POST"]
+          }
+        ],
+        "rewriters": [
+          {
+            "type": "path",
+            "args": ["api.php"]
+          }
+        ]
+      }
+    ]
   },
   "server": {
     "hostname": "{PLT_SERVER_HOSTNAME}",
@@ -64,6 +85,17 @@ The stackable uses a `platformatic.json` configuration file:
 
 #### php
 - `docroot` (string, required) - Path to the root directory containing PHP files
+- `rewriter` (array, optional) - A sequence of conditional rewrites to apply to PHP requests
+  - Each conditional rewrite is an object with:
+    - `operation` (string, optional) - Either `and` or `or` to combine conditions, defaults to `and`.
+    - `conditions` (array, optional) - List of conditions to match, if any
+      - Each condition is an object with:
+        - `type` (string, required) - Type of condition (e.g., `path`, `method`)
+        - `args` (array, required) - Parameters for the condition
+    - `rewriters` (array, required) - List of rewriters to apply if conditions match
+      - Each rewriter is an object with:
+        - `type` (string, required) - Type of rewriter (e.g., `path`, `method`)
+        - `args` (array, required) - Parameters for the rewriter
 
 #### server
 Standard Platformatic server configuration options are supported.
@@ -150,7 +182,7 @@ echo json_encode([
 // public/api.php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
-    
+
     header("Content-Type: application/json");
     echo json_encode([
         "received" => $input,

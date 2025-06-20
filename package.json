@@ -31,7 +31,7 @@
   "homepage": "https://github.com/platformatic/php#readme",
   "dependencies": {
     "@fastify/static": "^8.2.0",
-    "@platformatic/php-node": "^1.0.4",
+    "@platformatic/php-node": "^1.2.0",
     "@platformatic/service": "^2.63.3",
     "json-schema-to-typescript": "^15.0.4"
   },
