@@ -94,3 +94,20 @@ test('support rewriter', async t => {
   t.assert.deepStrictEqual(res.statusCode, 200)
   t.assert.deepStrictEqual(res.body, 'Hello World!')
 })
+
+test('post JSON', async t => {
+  const server = await startStackable(t)
+  const res = await server.inject({
+    url: '/post-json.php',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ foo: 'bar' })
+  })
+
+  t.assert.deepStrictEqual(res.statusCode, 200)
+  t.assert.deepStrictEqual(res.json(), {
+    foo: 'bar'
+  })
+})
