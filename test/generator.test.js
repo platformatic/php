@@ -74,7 +74,7 @@ test('should generate a stackable app', async t => {
   }
 
   {
-    const files = await readdir(join(testDir, 'public')) 
+    const files = await readdir(join(testDir, 'public'))
     deepStrictEqual(files.sort(), ['index.php'])
   }
 
