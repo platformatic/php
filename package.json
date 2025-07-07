@@ -3,6 +3,8 @@
   "version": "0.7.0",
   "description": "Integration of PHP with Wattpm",
   "scripts": {
+    "lint": "eslint --cache",
+    "lint:fix": "eslint --cache --fix",
     "test": "node --test",
     "build": "node -e 'import {schema} from \"./lib/schema.js\"; console.log(JSON.stringify(schema, null, 2))' > schema.json && json2ts > config.d.ts < schema.json",
     "dl-wordpress": "rm -rf workdpress && curl -O https://wordpress.org/latest.zip && unzip latest.zip ; rm latest.zip",

@@ -1,7 +1,5 @@
 import { buildServer } from '@platformatic/service'
-import { randomUUID } from 'node:crypto'
-import { once } from 'node:events'
-import { resolve, join } from 'node:path'
+import { join } from 'node:path'
 import { test } from 'node:test'
 import { stackable } from '../lib/index.js'
 import formAutoContet from 'form-auto-content'
@@ -44,7 +42,7 @@ test('post data', async t => {
     url: '/post.php',
     method: 'POST',
     ...formAutoContet({
-      'foo': 'bar'
+      foo: 'bar'
     })
   })
 
@@ -60,8 +58,8 @@ test('get all headers', async t => {
 
   t.assert.deepStrictEqual(res.statusCode, 200)
   t.assert.deepStrictEqual(res.json(), {
-    'HTTP_USER_AGENT': 'lightMyRequest',
-    'HTTP_HOST': 'localhost:80'
+    HTTP_USER_AGENT: 'lightMyRequest',
+    HTTP_HOST: 'localhost:80'
   })
 })
 
