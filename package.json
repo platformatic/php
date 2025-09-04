@@ -1,6 +1,6 @@
 {
   "name": "@platformatic/php",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Integration of PHP with Wattpm",
   "homepage": "https://github.com/platformatic/php#readme",
   "license": "Apache-2.0",
