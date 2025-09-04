@@ -164,32 +164,14 @@ export interface PlatformaticPHPConfiguration {
   plugins?: {
     [k: string]: unknown;
   };
-  metrics?:
-    | boolean
-    | {
-        port?: number | string;
-        hostname?: string;
-        endpoint?: string;
-        server?: "own" | "parent" | "hide";
-        defaultMetrics?: {
-          enabled: boolean;
-        };
-        auth?: {
-          username: string;
-          password: string;
-        };
-        labels?: {
-          [k: string]: string;
-        };
-      };
   telemetry?: {
     enabled?: boolean | string;
     /**
-     * The name of the service. Defaults to the folder name if not specified.
+     * The name of the application. Defaults to the folder name if not specified.
      */
-    serviceName: string;
+    applicationName: string;
     /**
-     * The version of the service (optional)
+     * The version of the application (optional)
      */
     version?: string;
     /**
@@ -271,6 +253,7 @@ export interface PlatformaticPHPConfiguration {
     | string;
   $schema?: string;
   module?: string;
+  application?: {};
   service?: {
     openapi?:
       | {
@@ -324,20 +307,12 @@ export interface PlatformaticPHPConfiguration {
           };
         };
   };
-  clients?: {
-    serviceId?: string;
-    name?: string;
-    type?: "openapi" | "graphql";
-    path?: string;
-    schema?: string;
-    url?: string;
-    fullResponse?: boolean;
-    fullRequest?: boolean;
-    validateResponse?: boolean;
-  }[];
   runtime?: {
     preload?: string | string[];
     basePath?: string;
+    services?: {
+      [k: string]: unknown;
+    }[];
     workers?: number | string;
     logger?: {
       level: (
@@ -423,9 +398,10 @@ export interface PlatformaticPHPConfiguration {
     };
     startTimeout?: number;
     restartOnError?: boolean | number;
+    exitOnUnhandledErrors?: boolean;
     gracefulShutdown?: {
       runtime: number | string;
-      service: number | string;
+      application: number | string;
     };
     health?: {
       enabled?: boolean | string;
@@ -435,7 +411,7 @@ export interface PlatformaticPHPConfiguration {
       maxELU?: number | string;
       maxHeapUsed?: number | string;
       maxHeapTotal?: number | string;
-      maxYoungGeneration?: number;
+      maxYoungGeneration?: number | string;
     };
     undici?: {
       agentOptions?: {
@@ -544,11 +520,11 @@ export interface PlatformaticPHPConfiguration {
     telemetry?: {
       enabled?: boolean | string;
       /**
-       * The name of the service. Defaults to the folder name if not specified.
+       * The name of the application. Defaults to the folder name if not specified.
        */
-      serviceName: string;
+      applicationName: string;
       /**
-       * The version of the service (optional)
+       * The version of the application (optional)
        */
       version?: string;
       /**
@@ -624,7 +600,8 @@ export interface PlatformaticPHPConfiguration {
       watchDisabled?: boolean;
       [k: string]: unknown;
     };
-    serviceTimeout?: number | string;
+    applicationTimeout?: number | string;
+    messagingTimeout?: number | string;
     env?: {
       [k: string]: string;
     };
