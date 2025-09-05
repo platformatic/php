@@ -18,7 +18,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.1(typescript@5.9.2)
       fastify-plugin:
-        specifier: ^5.0.0
+        specifier: ^5.0.1
         version: 5.0.1
     devDependencies:
       cleaner-spec-reporter:
