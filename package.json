@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/platformatic/php/issues"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "type": "module",
   "scripts": {
     "build": "node -e 'import {schema} from \"./lib/schema.js\"; console.log(JSON.stringify(schema, null, 2))' > schema.json && json2ts > config.d.ts < schema.json",
