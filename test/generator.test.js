@@ -88,7 +88,9 @@ test('should generate a stackable app', async t => {
     },
     name: 'stackable-app',
     scripts: {
-      start: 'platformatic start',
+      dev: 'wattpm dev',
+      start: 'wattpm start',
+      build: 'wattpm build',
       test: 'echo "No tests defined".'
     }
   })
