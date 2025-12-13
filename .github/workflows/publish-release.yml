@@ -22,7 +22,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Use supported Node.js Version
         uses: actions/setup-node@v4
         with:
