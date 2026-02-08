@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "cleaner-spec-reporter": "^1.0.0",
-    "eslint": "^9.21.0",
+    "eslint": "^10.0.0",
     "form-auto-content": "^3.2.1",
     "json-schema-to-typescript": "^15.0.4",
     "neostandard": "^0.12.1"
