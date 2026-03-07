@@ -45,7 +45,7 @@
     "eslint": "^9.21.0",
     "form-auto-content": "^3.2.1",
     "json-schema-to-typescript": "^15.0.4",
-    "neostandard": "^0.12.1"
+    "neostandard": "^0.13.0"
   },
   "engines": {
     "node": ">= 22.18.0"
