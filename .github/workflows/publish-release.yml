@@ -54,5 +54,7 @@ jobs:
           npm install npm -g
           npm publish --access public --tag ${{ inputs.prerelease == true && 'next' || 'latest' }}
       - name: Create release notes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          npx @matteo.collina/release-notes -a ${{ secrets.GITHUB_TOKEN }} -t ${{ steps.bump.outputs.version }} -r ${{ github.repository }} ${{ github.event.inputs.prerelease == 'true' && '-p' || '' }} -c ${{ github.ref }}
+          npx @matteo.collina/release-notes -t ${{ steps.bump.outputs.version }} -r ${{ github.repository }} ${{ github.event.inputs.prerelease == 'true' && '-p' || '' }} -c ${{ github.ref }}
